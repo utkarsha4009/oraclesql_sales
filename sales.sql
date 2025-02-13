@@ -107,3 +107,26 @@ group by state_code,product
 having product in (select product from 
 (select * from (select product.* , rownum as rn from product)where rn <=10))
 order by quantity desc;
+
+
+
+select to_char(order_date,'yyyy-mm')as month ,sum(quantity)as total_quantity
+from sales
+group by to_char(order_date,'yyyy-mm')
+order by sum(quantity)desc;
+
+select * from sales where to_char(order_date,'mm')='03';
+
+select * from sales where to_char(order_date,'yyyy')='2020';
+
+select * from sales where to_char(order_date,'dd')='12';
+
+
+select * from sales where order_date between to_date('01-01-2020','dd-mm-yyyy')
+and to_date('31-03-2020','dd-mm-yyyy');
+
+
+select to_char(order_date,'yyyy')as month ,sum(quantity)as total_quantity
+from sales
+group by to_char(order_date,'yyyy')
+order by sum(quantity)desc;
